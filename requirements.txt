@@ -1,0 +1,2 @@
+# Python dependencies for Hello World project
+# No external dependencies required for basic functionality
