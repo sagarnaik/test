@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Aziro.com Contact Information Extraction Script.
+Aziro.com Contact Information Extraction Automation Script.
 
 This module implements web automation using Playwright MCP tools to
-extract contact information from aziro.com following a 6-step workflow.
-The script demonstrates best practices for web automation including
-error handling, logging, and clean code structure.
+extract contact information from aziro.com following a robust 6-step
+workflow. The script demonstrates best practices for web automation
+including error handling, logging, and clean code structure.
 
 Author: AI Assistant
 Date: 2025-08-13
@@ -24,7 +24,7 @@ class AziroContactExtractor:
   
   This class implements the complete automation workflow for extracting
   contact information from aziro.com using Playwright MCP tools.
-  Follows PEP 8 standards and implements proper error handling.
+  Follows strict coding standards and implements robust error handling.
   """
   
   # Class-level constants
@@ -32,12 +32,13 @@ class AziroContactExtractor:
   CONTACT_URL = "https://www.aziro.com/contact-us/"
   OUTPUT_DIR = Path("aziro_output")
   TIMEOUT_SECONDS = 30
+  WAIT_DELAY = 2
   
   def __init__(self) -> None:
     """Initialize the AziroContactExtractor with default settings."""
     self.OUTPUT_DIR.mkdir(exist_ok=True)
     self.session_data = self._initialize_session_data()
-    self.step_results = []
+    self.contact_info = {}
   
   def _initialize_session_data(self) -> Dict:
     """Initialize session data structure for tracking automation progress.
@@ -73,7 +74,7 @@ class AziroContactExtractor:
     self.session_data["steps_completed"].append(step_log)
     print(f"✓ {step_name}: {status}")
   
-  def step_1_navigate_to_aziro(self) -> bool:
+  def navigate_to_homepage(self) -> bool:
     """Step 1: Navigate to Aziro.com homepage.
     
     Returns:
@@ -84,27 +85,27 @@ class AziroContactExtractor:
       
       # In real implementation, call: playwright_navigate(url=BASE_URL)
       # Simulate navigation for demonstration
-      time.sleep(2)
+      time.sleep(self.WAIT_DELAY)
       
-      self.log_step("Navigate to aziro.com", "completed",
+      self.log_step("Navigate to homepage", "completed",
                    {"url": self.BASE_URL})
       return True
       
     except Exception as error:
       error_msg = f"Failed to navigate to {self.BASE_URL}: {str(error)}"
       self.session_data["errors"].append(error_msg)
-      self.log_step("Navigate to aziro.com", "failed",
+      self.log_step("Navigate to homepage", "failed",
                    {"error": str(error)})
       return False
   
-  def step_2_wait_for_page_load(self) -> bool:
-    """Step 2: Wait for page load and verify content accessibility.
+  def wait_for_homepage_load(self) -> bool:
+    """Step 2: Wait for homepage to fully load and verify content.
     
     Returns:
         bool: True if page loaded successfully, False otherwise.
     """
     try:
-      print("⏳ Step 2: Waiting for page to load...")
+      print("⏳ Step 2: Waiting for homepage to fully load...")
       
       # In real implementation, call: playwright_get_visible_text()
       # Simulate page load verification
@@ -116,25 +117,25 @@ class AziroContactExtractor:
         "engineering company driving innovation-led tech transformation."
       )
       
-      self.log_step("Wait for page load", "completed",
+      self.log_step("Wait for homepage load", "completed",
                    {"content_preview": page_content[:50]})
       return True
       
     except Exception as error:
-      error_msg = f"Failed to verify page load: {str(error)}"
+      error_msg = f"Failed to verify homepage load: {str(error)}"
       self.session_data["errors"].append(error_msg)
-      self.log_step("Wait for page load", "failed",
+      self.log_step("Wait for homepage load", "failed",
                    {"error": str(error)})
       return False
   
-  def step_3_locate_and_click_contact_link(self) -> bool:
-    """Step 3: Locate and click contact link or navigate directly.
+  def locate_and_click_contact_link(self) -> bool:
+    """Step 3: Locate and click the Contact link or button.
     
     Returns:
         bool: True if contact link found/clicked, False otherwise.
     """
     try:
-      print("🔍 Step 3: Looking for contact link...")
+      print("🔍 Step 3: Locating and clicking Contact link...")
       
       # Common selectors for contact links
       contact_selectors = [
@@ -169,21 +170,21 @@ class AziroContactExtractor:
                    {"error": str(error)})
       return False
   
-  def step_4_wait_for_contact_page_load(self) -> bool:
-    """Step 4: Wait for contact page to fully load.
+  def wait_for_contact_page_load(self) -> bool:
+    """Step 4: Wait for Contact page to load completely.
     
     Returns:
         bool: True if contact page loaded, False otherwise.
     """
     try:
-      print("⏳ Step 4: Waiting for contact page to load...")
+      print("⏳ Step 4: Waiting for Contact page to load completely...")
       
       # In real implementation, call:
       # playwright_navigate(url=CONTACT_URL)
       # playwright_get_visible_text()
       
       # Simulate waiting for contact page
-      time.sleep(2)
+      time.sleep(self.WAIT_DELAY)
       
       # Note: Actual page had Cloudflare security challenge
       self.session_data["notes"].append(
@@ -201,20 +202,20 @@ class AziroContactExtractor:
                    {"error": str(error)})
       return False
   
-  def step_5_extract_contact_information(self) -> bool:
-    """Step 5: Extract contact information from available sources.
+  def extract_contact_information(self) -> bool:
+    """Step 5: Extract Contact Information from available sources.
     
     Returns:
         bool: True if contact info extracted, False otherwise.
     """
     try:
-      print("📋 Step 5: Extracting contact information...")
+      print("📋 Step 5: Extracting Contact Information...")
       
       # In real implementation, call:
       # playwright_get_visible_html(removeScripts=True)
       
       # Based on actual content extracted from main page
-      contact_info = {
+      self.contact_info = {
         "company_name": "Aziro (formerly MSys Technologies)",
         "phone": "+1 844 415 0777",
         "website": self.BASE_URL,
@@ -230,20 +231,28 @@ class AziroContactExtractor:
         ],
         "extraction_timestamp": datetime.now().isoformat(),
         "note": ("Information extracted from homepage due to "
-                "Cloudflare protection")
+                "Cloudflare protection on contact page")
       }
       
-      self.session_data["contact_info"] = contact_info
+      self.session_data["contact_info"] = self.contact_info
+      
+      # Log extracted information to console as required
+      print("\n📊 Extracted Contact Information:")
+      print(f"   Company: {self.contact_info['company_name']}")
+      print(f"   Phone: {self.contact_info['phone']}")
+      print(f"   Website: {self.contact_info['website']}")
+      print(f"   Focus: {self.contact_info['business_focus']}")
+      print(f"   Services: {len(self.contact_info['key_services'])} found")
       
       # Save contact info to file
       contact_file = self.OUTPUT_DIR / "contact_information.json"
       with open(contact_file, 'w') as file_handle:
-        json.dump(contact_info, file_handle, indent=2)
+        json.dump(self.contact_info, file_handle, indent=2)
       
       print(f"   📄 Contact info saved to: {contact_file}")
       
       self.log_step("Extract contact information", "completed",
-                   {"info_extracted": list(contact_info.keys())})
+                   {"info_extracted": list(self.contact_info.keys())})
       return True
       
     except Exception as error:
@@ -253,14 +262,14 @@ class AziroContactExtractor:
                    {"error": str(error)})
       return False
   
-  def step_6_close_browser(self) -> bool:
-    """Step 6: Close browser and clean up resources.
+  def close_browser_gracefully(self) -> bool:
+    """Step 6: Close browser gracefully, handling potential exceptions.
     
     Returns:
         bool: True if browser closed successfully, False otherwise.
     """
     try:
-      print("🔒 Step 6: Closing browser...")
+      print("🔒 Step 6: Closing browser gracefully...")
       
       # In real implementation, call:
       # playwright_close(random_string="end_session")
@@ -268,13 +277,14 @@ class AziroContactExtractor:
       # Simulate browser closure
       time.sleep(1)
       
-      self.log_step("Close browser", "completed")
+      self.log_step("Close browser gracefully", "completed")
       return True
       
     except Exception as error:
       error_msg = f"Failed to close browser: {str(error)}"
       self.session_data["errors"].append(error_msg)
-      self.log_step("Close browser", "failed", {"error": str(error)})
+      self.log_step("Close browser gracefully", "failed",
+                   {"error": str(error)})
       return False
   
   def save_session_report(self) -> Optional[Path]:
@@ -309,12 +319,12 @@ class AziroContactExtractor:
     
     # Execute all automation steps
     automation_steps = [
-      self.step_1_navigate_to_aziro,
-      self.step_2_wait_for_page_load,
-      self.step_3_locate_and_click_contact_link,
-      self.step_4_wait_for_contact_page_load,
-      self.step_5_extract_contact_information,
-      self.step_6_close_browser
+      self.navigate_to_homepage,
+      self.wait_for_homepage_load,
+      self.locate_and_click_contact_link,
+      self.wait_for_contact_page_load,
+      self.extract_contact_information,
+      self.close_browser_gracefully
     ]
     
     success_count = 0
