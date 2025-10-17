@@ -1,0 +1,82 @@
+{
+  "extraction_timestamp": "2025-10-17T12:47:57.795137",
+  "source_url": "https://www.aziro.com",
+  "automation_method": "MCP Playwright Server",
+  "contact_information": {
+    "phone_numbers": [
+      "+1 844 415 0777 (USA Toll-Free)",
+      "+91-44-39167015 (India - Chennai)",
+      "+91-44-39167016 (India - Chennai)",
+      "+91-20-66545700 (India - Pune)",
+      "+91-8050892700/01/02 (India - Bengaluru)",
+      "+91-9873694065 (India - Noida)",
+      "+65 3158 0749 (Singapore)",
+      "+60 11 27552665 (Malaysia)",
+      "+61 87 1002563 (Australia/NZ)"
+    ],
+    "emails": [
+      "marketing@aziro.com"
+    ],
+    "locations": [
+      {
+        "country": "USA",
+        "city": "Alpharetta, Georgia",
+        "address": "11539 Park Woods Circle, Suite 702",
+        "zip_code": "30005-2413",
+        "phone": "+1 844 415 0777"
+      },
+      {
+        "country": "India",
+        "city": "Chennai",
+        "address": "ASV Chandilya Towers, 8th Floor, # 5/397, Rajiv Gandhi Salai (OMR), Okkiyam Thoraipakkam",
+        "state": "Tamil Nadu",
+        "zip_code": "600096",
+        "phone": "+91-44-39167015"
+      },
+      {
+        "country": "India",
+        "city": "Pune",
+        "address": "Midas Tower, 2nd Floor, Rajiv Gandhi Infotech Park–Phase1, Hinjawadi",
+        "state": "Maharashtra",
+        "zip_code": "411057",
+        "phone": "+91-20-66545700"
+      },
+      {
+        "country": "India",
+        "city": "Bengaluru",
+        "address": "No. 311/19, 2nd Floor, 1st Main Rd, 8th Block, Jayanagar",
+        "state": "Karnataka",
+        "zip_code": "560082",
+        "phone": "+91-8050892700/01/02"
+      },
+      {
+        "country": "India",
+        "city": "Noida",
+        "address": "8th Floor, GM IT Park, 32-33, Sector 142",
+        "state": "Uttar Pradesh",
+        "zip_code": "201305",
+        "phone": "+91-9873694065"
+      },
+      {
+        "country": "Singapore",
+        "city": "Singapore",
+        "address": "51 LORONG 21 GEYLANG #04-03, Space 21",
+        "zip_code": "388466",
+        "phone": "+65 3158 0749"
+      },
+      {
+        "country": "Malaysia",
+        "city": "Malaysia",
+        "phone": "+60 11 27552665"
+      },
+      {
+        "country": "Australia",
+        "city": "Marsden Park, NSW",
+        "address": "14 Teatree Ave",
+        "zip_code": "2765",
+        "phone": "+61 87 1002563"
+      }
+    ],
+    "website": "https://www.aziro.com"
+  }
+}
